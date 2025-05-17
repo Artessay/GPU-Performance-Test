@@ -8,7 +8,7 @@ from utils import seed_everything, load_model_and_tokenizer
 # Configuration parameters
 model_path = os.getenv("MODEL_PATH", "Qwen/Qwen2.5-7B-Instruct")
 data_path = "data/alpaca_zh_demo.json"
-result_path = f"data/{torch.cuda.get_device_name(0)}_infer.json".replace(" ", "_")
+result_path = f"data/{torch.cuda.get_device_name(0)}_infer_{torch.cuda.device_count()}.json".replace(" ", "_")
 
 def inference():
     seed_everything(42)
