@@ -1,17 +1,54 @@
 # GPU Performance Test for Large Language Models
 
-## Prerequirement
+Benchmark train and inference speed of large language models on GPU devices using Hugging Face Transformers.
 
-Create conda environment and install requirements.
+Measures tokens per second (TPS) and latency for common LLM inference workloads.
+
+## Prerequisites
+
+* NVIDIA GPU with CUDA support
+* CUDA Toolkit installed
+* Conda package manager
+
+## Installation
+
+### Create Conda Environment
 
 ```bash
 conda create -n llm python=3.12 -y
 conda activate llm
-
-pip install torch --index-url https://download.pytorch.org/whl/cu128
-pip install transformers
-pip install accelerate
 ```
 
-## Run
+### Install Dependencies
 
+```bash
+pip install torch
+pip install accelerate transformers
+```
+
+## Usage
+
+### Set Model Path
+
+Define the LLM path via environment variable:
+
+```bash
+# Example: Use Qwen model  
+export MODEL_PATH="/data/Qwen/Qwen2.5-7B-Instruct"  
+```
+
+### Run Benchmark
+
+Test train speed.
+
+```bash
+python train.py
+```
+
+Test inference speed.
+
+```bash
+python inference.py
+```
+
+Let's improve LLM performance together! 🚀
