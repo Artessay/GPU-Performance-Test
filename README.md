@@ -23,7 +23,7 @@ conda activate llm
 
 ```bash
 pip install torch
-pip install accelerate transformers
+pip install accelerate datasets transformers
 ```
 
 ## Usage
@@ -39,13 +39,13 @@ export MODEL_PATH="/data/Qwen/Qwen2.5-7B-Instruct"
 
 ### Run Benchmark
 
-Test train speed.
+Test train performance.
 
 ```bash
-python train.py
+accelerate launch train.py
 ```
 
-Test inference speed.
+Test inference performance.
 
 ```bash
 python inference.py
