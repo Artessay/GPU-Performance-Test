@@ -23,7 +23,7 @@ conda activate llm
 
 ```bash
 pip install torch
-pip install accelerate datasets transformers
+pip install deepspeed datasets transformers
 ```
 
 ## Usage
@@ -47,6 +47,12 @@ export MODEL_PATH="/data/Qwen/Qwen2.5-7B-Instruct"
 ```
 
 ### Run Benchmark
+
+Test train performance.
+
+```bash
+deepspeed --num_gpus=8 train.py 
+```
 
 Test inference performance.
 
