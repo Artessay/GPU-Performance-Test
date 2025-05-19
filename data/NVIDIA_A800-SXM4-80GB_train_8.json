@@ -1,0 +1,6 @@
+{
+    "model": "Qwen2.5-3B-Instruct",
+    "time": 879.6896495819092,
+    "num_gpus": 8,
+    "device_name": "NVIDIA A800-SXM4-80GB"
+}

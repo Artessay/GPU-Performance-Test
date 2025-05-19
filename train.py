@@ -99,7 +99,7 @@ def train_model(model_path, data_path, deepspeed_config):
         print(f"Training completed - Total time: {elapsed:.2f} seconds")
         with open(result_path, "w") as f:
             json.dump({
-                "model": model_path,
+                "model": model_path.split('/')[-1],
                 "time": elapsed,
                 "num_gpus": num_gpus,
                 "device_name": device_name,
