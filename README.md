@@ -43,7 +43,7 @@ Define the LLM path via environment variable:
 
 ```bash
 # Example: Use Qwen model  
-export MODEL_PATH="/data/Qwen/Qwen2.5-7B-Instruct"  
+export MODEL_PATH="/data/Qwen/Qwen2.5-7B-Instruct"
 ```
 
 ### Run Benchmark
