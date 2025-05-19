@@ -1,0 +1,6 @@
+{
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "time": 4201.658175468445,
+    "num_gpus": 8,
+    "device_name": "NVIDIA GeForce RTX 3090"
+}
