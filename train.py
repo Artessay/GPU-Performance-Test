@@ -58,7 +58,7 @@ def train():
     
     # Generate training arguments
     training_args = TrainingArguments(
-        output_dir="./results",
+        output_dir="./output",
         num_train_epochs=3,
         per_device_train_batch_size=4,
         per_device_eval_batch_size=4,
@@ -66,12 +66,8 @@ def train():
         weight_decay=0.01,
         logging_dir="./logs",
         logging_steps=10,
-        evaluation_strategy="steps",
-        eval_steps=500,
-        save_strategy="steps",
-        save_steps=1000,
-        fp16=True,
-        report_to="tensorboard",
+        eval_strategy="no",
+        save_strategy="no",
     )
 
     # Create data collator
@@ -93,10 +89,10 @@ def train():
     # Train the model
     trainer.train()
     
-    # Save the fine-tuned model
-    model_save_path = "./fine_tuned_model"
-    model.save_pretrained(model_save_path)
-    tokenizer.save_pretrained(model_save_path)
+    # # Save the fine-tuned model
+    # model_save_path = "./fine_tuned_model"
+    # model.save_pretrained(model_save_path)
+    # tokenizer.save_pretrained(model_save_path)
 
     elapsed = time.time() - start_time
 
@@ -108,7 +104,7 @@ def train():
         json.dump({
             "model": model_path,
             "time": elapsed,
-            "save_path": model_save_path,
+            # "save_path": model_save_path,
         }, f, indent=4)
 
 if __name__ == "__main__":
