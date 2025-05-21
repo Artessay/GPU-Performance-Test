@@ -12,6 +12,15 @@ Measures tokens per second (TPS) and latency for common LLM inference workloads.
 
 ## Installation
 
+### Clone Repository
+
+Clone GitHub repository to your local folder.
+
+```bash
+git clone https://github.com/Artessay/GPU-Performance-Test.git
+cd GPU-Performance-Test
+```
+
 ### Creating Conda Environment (Optional)
 
 ```bash
@@ -22,20 +31,10 @@ conda activate gpu_test
 ### Install Dependencies
 
 ```bash
-pip install torch
-pip install deepspeed datasets transformers
+bash ./env_install.sh
 ```
 
 ## Usage
-
-### Clone Repository
-
-Clone GitHub repository to your local folder.
-
-```bash
-git clone https://github.com/Artessay/GPU-Performance-Test.git
-cd GPU-Performance-Test
-```
 
 ### Set Model Path
 
@@ -48,10 +47,22 @@ export MODEL_PATH="/data/Qwen/Qwen2.5-7B-Instruct"
 
 ### Run Benchmark
 
-Test train performance under deepspeed framework.
+Test matrix multiplication performance.
+
+```bash
+python matrix_multiplication.py
+``` 
+
+Test train performance under DeepSpeed framework.
 
 ```bash
 deepspeed --num_gpus=8 train_deepspeed.py 
+```
+
+Test inference performance under vLLM framework.
+
+```bash
+python inference_vllm.py
 ```
 
 Test inference performance under transformers framework.

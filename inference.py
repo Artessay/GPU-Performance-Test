@@ -3,7 +3,11 @@ import json
 import time
 import torch
 
-from utils import seed_everything, load_model_and_tokenizer
+from transformers import (
+    AutoTokenizer,
+    AutoModelForCausalLM,
+    set_seed,
+)
 
 # Configuration parameters
 model_path = os.getenv("MODEL_PATH", "Qwen/Qwen2.5-7B-Instruct")
@@ -12,8 +16,27 @@ data_path = "data/alpaca_zh_demo.json"
 assert torch.cuda.is_available()
 result_path = f"data/{torch.cuda.get_device_name(0)}_infer_{torch.cuda.device_count()}.json".replace(" ", "_")
 
+
+def load_model_and_tokenizer(model_name_or_path):
+    """
+    load model and tokenizer
+    """
+
+    tokenizer = AutoTokenizer.from_pretrained(
+        model_name_or_path,
+    )
+    model = AutoModelForCausalLM.from_pretrained(
+        model_name_or_path,
+        torch_dtype="auto",
+        device_map="auto",
+        low_cpu_mem_usage=True,
+        # attn_implementation='flash_attention_2',
+    )
+
+    return model, tokenizer
+
 def inference():
-    seed_everything(42)
+    set_seed(42)
 
     # Load model and tokenizer
     model, tokenizer = load_model_and_tokenizer(model_path)

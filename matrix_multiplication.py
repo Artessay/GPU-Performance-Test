@@ -1,6 +1,6 @@
-import torch
+import json
 import time
-
+import torch
 
 def test_gpu_performance(device_id):
     device = torch.device(f'cuda:{device_id}')
@@ -27,13 +27,19 @@ def test_gpu_performance(device_id):
 
 if __name__ == "__main__":
     # Check if there are available GPUs
-    if torch.cuda.is_available():
-        num_gpus = torch.cuda.device_count()
-        print(f"Found {num_gpus} available GPUs.")
-        
-        total_time = 0.0
-        for i in range(num_gpus):
-            total_time += test_gpu_performance(i)
-        print(f"Average time taken by all GPUs: {total_time / num_gpus:.4f} seconds.")
-    else:
-        print("No available GPUs were found.")
+    assert torch.cuda.is_available(), "No available GPUs were found."
+    
+    num_gpus = torch.cuda.device_count()
+    print(f"Found {num_gpus} available GPUs.")
+    
+    total_time = 0.0
+    for i in range(num_gpus):
+        total_time += test_gpu_performance(i)
+    print(f"Average time taken by all GPUs: {total_time / num_gpus:.4f} seconds.")
+
+    result_path = f"data/{torch.cuda.get_device_name(0)}_matrix_{torch.cuda.device_count()}.json".replace(" ", "_")
+    with open(result_path, 'w') as f:
+        json.dump({
+            "samples": num_gpus,
+            "avg_time_per_sample": total_time/num_gpus,
+        }, f, indent=4)
