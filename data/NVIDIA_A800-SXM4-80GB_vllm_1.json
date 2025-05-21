@@ -1,0 +1,7 @@
+{
+    "samples": 1000,
+    "num_tokens": 163231,
+    "model_name": "Qwen2.5-7B-Instruct",
+    "avg_time_per_sample": 0.02601457905769348,
+    "avg_time_per_token": 0.000159372784934807
+}
