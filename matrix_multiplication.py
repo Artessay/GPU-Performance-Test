@@ -2,6 +2,10 @@ import json
 import time
 import torch
 
+# # source /usr/local/Ascend/ascend-toolkit/set_env.sh
+# import torch_npu
+# from torch_npu.contrib import transfer_to_npu
+
 def test_gpu_performance(device_id):
     device = torch.device(f'cuda:{device_id}')
 
@@ -37,7 +41,7 @@ if __name__ == "__main__":
         total_time += test_gpu_performance(i)
     print(f"Average time taken by all GPUs: {total_time / num_gpus:.4f} seconds.")
 
-    result_path = f"data/{torch.cuda.get_device_name(0)}_matrix_{torch.cuda.device_count()}.json".replace(" ", "_")
+    result_path = f"data/{torch.cuda.get_device_name(0)}_matrix_{num_gpus}.json".replace(" ", "_")
     with open(result_path, 'w') as f:
         json.dump({
             "samples": num_gpus,

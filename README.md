@@ -36,6 +36,12 @@ bash ./env_install.sh
 
 ## Usage
 
+### Download Model
+
+```
+modelscope download --model Qwen/Qwen2.5-7B-Instruct --local_dir /data/Qwen/Qwen2.5-7B-Instruct
+```
+
 ### Set Model Path
 
 Define the LLM path via environment variable.
